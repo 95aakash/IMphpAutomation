@@ -1,10 +1,15 @@
 <?php
 require_once('config.php');
 
+
 if (isset($_GET['logout'])) { // logout: destroy token
     unset($_SESSION['accessToken']);
 	die('Logged out.');
 }
+// if(session_status() == PHP_SESSION_ACTIVE)
+// {
+//     session_regenerate_id();
+// }
 
 
 if (isset($_GET['code'])) { // we received the positive auth callback, get the token and store it in session
@@ -39,7 +44,7 @@ if (strpos($emailid, '@indiamart.com') === false) {
     header("Location: index.php");
     // exit();
 }else{
-    header("Location: report.php");
+    header("Location: extentReport-index.php");
 }
 exit();
 ?>

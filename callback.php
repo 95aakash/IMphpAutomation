@@ -1,30 +1,78 @@
 <?php
 require_once('config.php');
 
-// console.log('inside callback');
-// echo 'inside callback';
-// authenticate code from Google OAuth Flow
-if (isset($_GET['code'])) {
-    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $client->setAccessToken($token['access_token']);
-    
-    // get profile info
-    $google_oauth = new Google_Service_Oauth2($client);
-    $google_account_info = $google_oauth->userinfo->get();
-    $email =  $google_account_info->email;
-    $name =  $google_account_info->name;
-    echo 'hello world';
-   
-    // now you can use this profile info to create account in your website and make user logged in.
-  } else {
-    
-    // echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
-    header("Location: index.php");
-  }
-  ?>
-
-<!-- 
 if (isset($_GET['logout'])) { // logout: destroy token
+    unset($_SESSION['accessToken']);
+	die('Logged out.');
+}
+
+
+if (isset($_GET['code'])) { // we received the positive auth callback, get the token and store it in session
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    // $client->setAccessToken($token['access_token']);
+   
+   
+    // $client->authenticate();
+    $_SESSION['accessToken'] = $client->getAccessToken();
+}
+
+if (isset($_SESSION['token'])) { // extract token from session and configure client
+    $token = $_SESSION['accessToken'];
+    $client->setAccessToken($token);
+}
+
+if (!$client->getAccessToken()) { // auth call to google
+    // $authUrl = $client->createAuthUrl();
+    // header("Location: ".$authUrl);
+    header("Location: index.php");
+    // exit();
+}
+$google_oauth = new Google_Service_Oauth2($client);
+
+$datas = $google_oauth->userinfo->get();
+
+$emailid= $datas['email'];
+// $a = 'How are you?';
+
+if (strpos($emailid, '@indiamart.com') === false) {
+    echo 'true';
+    header("Location: index.php");
+    // exit();
+}else{
+    header("Location: report.php");
+}
+exit();
+?>
+
+
+
+
+
+
+
+
+<!-- // authenticate code from Google OAuth Flow
+// if (isset($_GET['code'])) {
+//     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+//     $client->setAccessToken($token['access_token']);
+    
+//     // get profile info
+//     $google_oauth = new Google_Service_Oauth2($client);
+//     $google_account_info = $google_oauth->userinfo->get();
+//     $email =  $google_account_info->email;
+//     $name =  $google_account_info->name;
+//     echo 'hello world';
+   
+//     // now you can use this profile info to create account in your website and make user logged in.
+//   } else {
+    
+//     // echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+//     header("Location: index.php");
+//   }
+//   ?> -->
+
+
+<!-- if (isset($_GET['logout'])) { // logout: destroy token
     unset($_SESSION['token']);
 	die('Logged out.');
 }
@@ -45,8 +93,8 @@ if (!$client->getAccessToken()) { // auth call to google
     header("Location: index.php");
     die;
 }
-echo 'Hello, world.';
-?> -->
+echo 'Hello, world.'; -->
+
 <!-- // if (isset($_GET['code'])) {
 //     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 //     console.log('token is',$token);
@@ -91,4 +139,3 @@ echo 'Hello, world.';
 //     $_SESSION['accessToken'] = $token;
 // }else{
 //     header("location: index.php"); -->
-

@@ -86,7 +86,7 @@ if(!isset($_SESSION['accessToken'])){
 								<ul id='test-collection' class='test-collection'>
 										<li class='collection-item test displayed active pass '>
 											<div>
-												<a href='http://report.intermesh.net/otp/OTPGenerationVerificationTestCases.html'> OTP GENERATION WITH OTP VERIFICATION </a>
+												<a href='OTPGenerationVerificationTestCases.html'> OTP GENERATION WITH OTP VERIFICATION </a>
 											</div>
 										</li>
 										<li class='collection-item test displayed active pass '>

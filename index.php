@@ -1,10 +1,11 @@
 <?php
 session_start();
 // print_r($_SESSION['accessToken']);
-if(!isset($_SESSION['accessToken'])){
-	$_SESSION = array();
-
+if ( isset( $_COOKIE['PHPSESSID'] ) ){
+    setcookie('PHPSESSID' , "", time()-3600, "/" );
 }
+session_destroy();
+// }
 
 ?>
 

@@ -11,6 +11,7 @@ if(!isset($_SESSION['accessToken'])){
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,23 +28,22 @@ if(!isset($_SESSION['accessToken'])){
 		<meta name='extentx' id='extentx' content='' />
 		
 		<title>
-				ExtentReports 2.0dummy
+				ExtentReports 2.0
 		</title>
-
-	
 		
 		
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
 		<link href='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.css' type='text/css' rel='stylesheet' />
 		
-		
+		<style>
+				
+            
+                
+            
+        
+		</style>
 	</head>
-		<script>
-		window.onload = function () {
-		  var x = document.cookie;
-		  console.log('cookieval ',x)
-        };
-		</script>
+	
 	
 	<body class='extent default standard hide-overflow'>
 		<!-- nav -->
@@ -58,7 +58,7 @@ if(!isset($_SESSION['accessToken'])){
 			<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 				<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
 			</ul>
-			<span class='report-name'>OTP Generation / Verification</span> <span class='report-headline'> Regression Automation Report</span>
+			<span class='report-name'>Company Service</span> <span class='report-headline'> Regression Automation Report</span>
 			<ul class='right hide-on-med-and-down nav-right'>
 				<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
 					<i class='mdi-hardware-desktop-windows'></i>
@@ -87,13 +87,7 @@ if(!isset($_SESSION['accessToken'])){
 								<ul id='test-collection' class='test-collection'>
 										<li class='collection-item test displayed active pass '>
 											<div>
-												<a href='otp/index.html'> OTP GENERATION WITH OTP VERIFICATION </a>
-											</div>
-										</li>
-										<li class='collection-item test displayed active pass '>
-											<div>
-												<a href='otp/OTPGenerationVerificationTestCases.php'> OTP GENERATION WITH OTP CHECK </a>
-												<!-- OTP GENERATION WITH OTP CHECK -->
+												<a href='CompanyTestCases.html'> Company Service Test Cases </a>
 											</div>
 										</li>									
 								</ul>
@@ -104,7 +98,5 @@ if(!isset($_SESSION['accessToken'])){
 			</div>
 		</div>
 		<script src='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.js' type='text/javascript'></script>
-
-
 	</body>
 </html>
